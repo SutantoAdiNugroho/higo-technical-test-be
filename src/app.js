@@ -6,6 +6,10 @@ const customerRoutes = require('./routes/customerRoutes');
 
 dotenv.config();
 
+// swagger
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./config/swagger');
+
 const app = express();
 const port = process.env.PORT || 8000;
 
@@ -17,6 +21,9 @@ app.use(express.urlencoded({ extended: true }));
 
 // api route
 app.use('/api', customerRoutes);
+
+// docs api route
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.get('/', (req, res) => {
   res.send('Welcome to technical test sutantoadi at Higo!');
