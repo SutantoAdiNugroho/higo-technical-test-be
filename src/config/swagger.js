@@ -1,6 +1,9 @@
 const swaggerJsdoc = require('swagger-jsdoc')
 const host = process.env.HOST;
 const port = process.env.PORT;
+const isProduction = process.env.IS_PRODUCTION;
+
+const fullUrl = isProduction === 'true' ? host : `${host}:${port}`;
 
 const options = {
   definition: {
@@ -12,7 +15,7 @@ const options = {
     },
     servers: [
       {
-        url: `${host}:${port}/api`,
+        url: `${fullUrl}/api`,
         description: 'Main server',
       },
     ],
