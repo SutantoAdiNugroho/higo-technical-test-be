@@ -138,6 +138,24 @@ const options = {
               },
               description: 'page number of items per page when pagination is enabled',
             },
+            {
+              in: 'query',
+              name: 'name',
+              schema: {
+                type: 'string',
+              },
+              description: 'Search for customer name with case insensitive.',
+            },
+            {
+              in: 'query',
+              name: 'gender',
+              schema: {
+                type: 'string',
+                enum: ['All', 'Male', 'Female'],
+                default: 'All',
+              },
+              description: 'Filter customers by gender. Use "All" to show all genders',
+            },
           ],
           responses: {
             '200': {
@@ -169,8 +187,8 @@ const options = {
         Customer: {
           type: 'object',
           properties: {
-            _id: { type: 'string', example: '60c72b1f9b1d8e001c8c4c7a' },
-            Number: { type: 'number', example: 1 },
+            id: { type: 'string', example: '60c72b1f9b1d8e001c8c4c7a' },
+            number: { type: 'number', example: 1 },
             nameOfLocation: { type: 'string', example: 'The Rustic Tavern' },
             date: { type: 'string', format: 'date-time', example: '2023-12-07T00:00:00.000Z' },
             loginHour: { type: 'string', example: '16:07' },
